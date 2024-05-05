@@ -1,0 +1,31 @@
+import yfinance as yf
+
+import matplotlib.pyplot as plt
+
+stockticker = yf.Ticker("SOUTHBANK.NS")
+
+#get all stock info
+stockticker.info
+
+#shows balance sheet
+stockticker.balance_sheet
+
+hist = stockticker.history(period="1mo")
+response = hist.to_json()
+response
+
+stock_ticker = "SOUTHBANK.NS"
+
+# Get historical data for the past month
+stock_data = yf.Ticker(stock_ticker).history(period="1mo")
+
+# Plotting the closing prices
+plt.figure(figsize=(10, 6))  # Adjust the figure size as needed
+plt.plot(stock_data['Close'], marker='o', linestyle='-')
+plt.title('Historical Closing Prices for ' + stock_ticker)
+plt.xlabel('Date')
+plt.ylabel('Price (INR)')
+plt.grid(True)
+plt.xticks(rotation=45)  # Rotate x-axis labels for better readability
+plt.tight_layout()  # Adjust layout to prevent clipping of labels
+plt.show()
